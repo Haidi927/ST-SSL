@@ -96,6 +96,7 @@ class Trainer(object):
         start_time = time.time()
 
         loss_tm1 = loss_t = np.ones(3) #(1.0, 1.0, 1.0)
+        self.args.epochs = 1
         for epoch in range(1, self.args.epochs + 1):
             # dwa mechanism to balance optimization speed for different tasks
             if self.args.use_dwa:

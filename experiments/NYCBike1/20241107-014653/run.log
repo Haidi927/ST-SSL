@@ -1,0 +1,25 @@
+2024-11-07 01:46:53: Experiment log path in: /workspaces/ST-SSL/experiments/NYCBike1/20241107-014653
+2024-11-07 01:46:53: Experiment configs are: Namespace(batch_size=32, best_path='None', d_input=2, d_model=64, d_output=2, data_dir='data', dataset='NYCBike1', debug=False, device='cpu', dropout=0.2, early_stop=True, early_stop_patience=15, epochs=100, grad_norm=True, graph_file='data/NYCBike1/adj_mx.npz', input_length=19, log_dir='/workspaces/ST-SSL/experiments/NYCBike1/20241107-014653', lr_init=0.001, max_grad_norm=5, mode='train', nmb_prototype=6, num_nodes=128, percent=0.1, seed=31, shm_temp=0.5, temp=4, test_batch_size=32, use_dwa=True, yita=0.6)
+2024-11-07 01:47:15: Traceback (most recent call last):
+  File "main.py", line 61, in model_supervisor
+    results = trainer.train() # best_eval_loss, best_epoch
+  File "/workspaces/ST-SSL/model/trainer.py", line 110, in train
+    train_epoch_loss, loss_t = self.train_epoch(epoch, loss_weights)
+  File "/workspaces/ST-SSL/model/trainer.py", line 57, in train_epoch
+    repr1, repr2 = self.model(data, self.graph) # nvc
+  File "/opt/conda/envs/py38/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1102, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/workspaces/ST-SSL/model/models.py", line 40, in forward
+    repr2 = self.encoder(view2, graph2)
+  File "/opt/conda/envs/py38/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1102, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/workspaces/ST-SSL/model/layers.py", line 217, in forward
+    x = self.dropout1(self.ln1(x.permute(0, 2, 3, 1)).permute(0, 3, 1, 2))
+  File "/opt/conda/envs/py38/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1102, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/opt/conda/envs/py38/lib/python3.8/site-packages/torch/nn/modules/dropout.py", line 58, in forward
+    return F.dropout(input, self.p, self.training, self.inplace)
+  File "/opt/conda/envs/py38/lib/python3.8/site-packages/torch/nn/functional.py", line 1169, in dropout
+    return _VF.dropout_(input, p, training) if inplace else _VF.dropout(input, p, training)
+KeyboardInterrupt
+
